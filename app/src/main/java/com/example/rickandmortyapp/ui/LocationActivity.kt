@@ -1,5 +1,4 @@
 package com.example.rickandmortyapp.ui
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,33 +9,33 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickandmortyapp.R
-import com.example.rickandmortyapp.adapter.CharacterAdapter
-import com.example.rickandmortyapp.adapter.EpisodeAdapter
-import com.example.rickandmortyapp.viewmodel.CharacterViewModel
-import com.example.rickandmortyapp.viewmodel.EpisodeViewModel
+import com.example.rickandmortyapp.adapter.LocationAdapter
+import com.example.rickandmortyapp.viewmodel.LocationViewModel
+import kotlinx.android.synthetic.main.activity_location.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.flow.collectLatest
 
-class EpisodeActivity : AppCompatActivity() {
-    lateinit var recyclerViewAdapter: EpisodeAdapter
+class LocationActivity : AppCompatActivity() {
+    lateinit var recyclerViewAdapter: LocationAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_episode)
+        setContentView(R.layout.activity_location)
+
         initRecyclerView()
         initViewModel()
     }
 
     private fun initRecyclerView(){
-        recycler_view.apply {
-            layoutManager = LinearLayoutManager(this@EpisodeActivity)
+        location_recycler_view.apply {
+            layoutManager = LinearLayoutManager(this@LocationActivity)
             val decoration = DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
-            recyclerViewAdapter = EpisodeAdapter()
+            recyclerViewAdapter = LocationAdapter()
             adapter = recyclerViewAdapter
         }
     }
     private fun initViewModel(){
-        val viewModel = ViewModelProvider(this).get(EpisodeViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(LocationViewModel::class.java)
         lifecycleScope.launchWhenCreated {
             viewModel.getListData().collectLatest {
                 recyclerViewAdapter.submitData(it)
@@ -54,11 +53,13 @@ class EpisodeActivity : AppCompatActivity() {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-        else if(item.itemId == R.id.location){
-            val intent = Intent(this,LocationActivity::class.java)
+        else if(item.itemId == R.id.episode){
+            val intent = Intent(this,EpisodeActivity::class.java)
             startActivity(intent)
-        }else if(item.itemId == R.id.episode){
+        }else if(item.itemId == R.id.location){
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }

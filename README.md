@@ -82,3 +82,5 @@ You can find following apis implementation in this project.
 [51]: https://developer.android.com/kotlin/coroutines
 [13]: https://developer.android.com/topic/libraries/data-binding
 [96]: https://developer.android.com/training/dependency-injection/hilt-android
+[95]: https://developer.android.com/topic/libraries/architecture/paging/v3-overview#architecture
+

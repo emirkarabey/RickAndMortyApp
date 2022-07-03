@@ -55,6 +55,9 @@ class MainActivity : AppCompatActivity() {
         if(item.itemId == R.id.episode){
             val intent = Intent(this,EpisodeActivity::class.java)
             startActivity(intent)
+        }else if(item.itemId == R.id.location){
+            val intent = Intent(this,LocationActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
